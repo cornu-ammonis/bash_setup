@@ -1,10 +1,22 @@
-function DevServers() {
-	local APPDIR="/Users/andrewjones/bidops/Bid-Ops-Web"
 
-	osascript -e 'tell application "Terminal" to do script "cd '$APPDIR' && webpack-dev-server"'
+APPDIR="/Users/andrewjones/Documents/GitHub/bidops-app"
+function DevServers() {
+	
+
+	osascript -e 'tell application "Terminal" to do script "cd '$APPDIR' && node_modules/.bin/webpack-dev-server --config ./config/webpack/development.js"'
 	
 	cd $APPDIR
 	rails s
 }
 
 alias ds="DevServers"
+
+function jsxEslint() {
+	cd $APPDIR
+	eslint --ext .jsx ./app/frontend/src/javascripts/
+}
+
+function jsxEslintFix() {
+	cd $APPDIR
+	eslint --ext .jsx ./app/frontend/src/javascripts/ --fix
+}
